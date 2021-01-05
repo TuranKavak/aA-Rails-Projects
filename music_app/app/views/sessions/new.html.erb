@@ -1,0 +1,24 @@
+<h1>Log in!</h1>
+
+<%= render "shared/errors" %>
+
+<a class='button' href=<%= new_user_url %>>Go to Sign-up!</a>
+
+
+<form action="/session" method="POST">
+  <%= auth_token %>
+
+  <p>
+    <label for="new-user-email">Email</label>
+    <input id="new-user-email" name="user[email]" type="text">
+  </p>
+
+  <br />
+
+  <label for="user_password">Password</label>
+  <input type="password" name="user[password]" id="user_password">
+
+  <br />
+
+  <input type="submit" value="Log in!">
+</form>

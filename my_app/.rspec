@@ -1,0 +1,13 @@
+
+--color
+--require spec_helper
+--require rails_helper
+--format documentation
+--example
+--format
+--tag
+--order
+--fail-fast
+--init
+--pattern
+--require

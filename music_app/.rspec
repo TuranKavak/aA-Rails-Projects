@@ -1,0 +1,12 @@
+
+--color
+--require spec_helper
+--format documentation
+--example
+--format
+--tag
+--order
+--fail-fast
+--init
+--pattern
+--require

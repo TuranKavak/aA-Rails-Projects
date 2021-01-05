@@ -1,0 +1,47 @@
+<% action_url = track.persisted? ? track_url(track) : tracks_url %>
+<% http_method = track.persisted? ? "PATCH" : "POST" %>
+<% button_text = track.persisted? ? "Update Track!" : "Create Track!" %>
+
+
+<form class='form' action="<%= action_url %>" method="POST">
+    <input type="hidden" name="_method" value="<%= http_method %>">
+    <%= auth_token %>
+
+    <p>
+        <label for='track-title'>Title</label>
+        <input id='track-title' type="text" name="track[title]" value="<%= track.title %>">
+    </p>
+    
+    <label for="track_album">Album</label>
+    <select name="track[album_id]" id="track_album">
+        <option disabled selected>-- select an Album --</option>
+        <% Album.all.each do |album| %>
+        <option <%= track.album_id == album.id ? "selected" : "" %> value="<%= album.id %>">
+            <%= album.title %>
+        </option>
+        <% end %>
+    </select>
+    <br>
+
+    <p>
+        <label for="track_lyrics">Lyrics</label><br>
+        <textarea id="track_lyrics" rows="10" cols="40" name="track[lyrics]"><%= track.lyrics %></textarea>
+    </p>
+
+
+    <p>
+        <label for='track-ord'>Ord</label>
+        <input id='track-ord' type="number" name="track[ord]" value="<%= track.ord %>">
+    </p>
+
+    <input type="radio" name="track[regular]" value="true" id="track_regular_true"
+        <%= track.regular == true ? "checked" : "" %>>
+    <label for="track_regular_true">Regular</label>
+
+    <input type="radio" name="track[regular]" value="false" id="track_regular_false"
+        <%= track.regular == false ? "checked" : "" %>>
+    <label for="track_regular_false">Bonus</label>
+    <br>
+
+    <input type="submit" value="<%= button_text %>">
+</form>
